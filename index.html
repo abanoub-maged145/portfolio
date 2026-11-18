@@ -196,6 +196,16 @@
   .insight-block{font-size:14px; color:var(--ink-dim); margin-bottom:10px;}
   .insight-block b{color:var(--ink); font-weight:600;}
 
+  .feature-list{list-style:none; margin:4px 0 18px; display:grid; grid-template-columns:1fr 1fr; gap:6px 22px;}
+  @media (max-width:700px){ .feature-list{grid-template-columns:1fr;} }
+  .feature-list li{color:var(--ink-dim); font-size:13.5px; padding-left:16px; position:relative;}
+  .feature-list li::before{content:'—'; position:absolute; left:0; color:var(--blue2);}
+  .feature-list b{color:var(--ink); font-weight:600;}
+  .project-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+  .project-actions .btn{padding:10px 18px; font-size:13px;}
+  .new-tag{font-size:11px; font-weight:700; color:var(--green); background:rgba(74,222,128,0.1);
+    border:1px solid rgba(74,222,128,0.3); padding:3px 10px; border-radius:100px; margin-left:10px; vertical-align:middle;}
+
   /* ---------- Experience ---------- */
   .exp-list{max-width:680px; margin:0 auto;}
   .exp-row{
@@ -236,6 +246,7 @@
   .lightbox-close:hover{opacity:1;}
 
   @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+  [hidden]{display:none !important;}
   a:focus-visible, .btn:focus-visible{outline:2px solid var(--blue2); outline-offset:2px;}
 </style>
 </head>
@@ -360,6 +371,34 @@
     <div class="section-head">
       <div class="kicker">Projects</div>
       <h2>Selected Data Analytics Projects</h2>
+    </div>
+
+    <div class="project-card" id="collection-suite">
+      <div class="project-title">Collection Analytics Suite <span class="new-tag">LIVE DEMO</span></div>
+      <div class="stack-row">
+        <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">pandas</span><span class="chip">Odoo JSON-RPC</span><span class="chip">scikit-learn</span><span class="chip">openpyxl</span><span class="chip">pytest &amp; GitHub Actions</span>
+      </div>
+      <div class="project-gallery">
+        <img src="assets/collection-suite/insights-kpis.jpg" alt="Live KPIs: portfolio, payments and accounts about to roll to a worse bucket" class="gal-img gal-tall" loading="lazy">
+        <img src="assets/collection-suite/insights-home.jpg" alt="INSIGHTS home page pulling today's numbers live from Odoo" class="gal-img gal-wide" loading="lazy">
+        <img src="assets/collection-suite/collector-day-plan.jpg" alt="Per-collector day plan with promises, at-risk accounts and priorities" class="gal-img gal-tall" loading="lazy">
+      </div>
+      <div class="kpi-line"><span class="kpi-label">Key KPIs:</span> <b>30+</b> Report pages &nbsp;|&nbsp; <b>2</b> Bank portfolios &nbsp;|&nbsp; <b>120+</b> Automated tests &nbsp;|&nbsp; <b>Live</b> Odoo integration</div>
+      <div class="insight-block"><b>Overview:</b> A multi-page web platform used daily by a debt-collection team: it reads the CRM (Odoo) live, turns raw claims, follow-ups and payments into decisions — what to call today, who is about to roll into a worse bucket, which promises broke — and exports every view to Excel.</div>
+      <ul class="feature-list">
+        <li><b>Live insights</b> — treatment rate, payments, broken promises, neglect</li>
+        <li><b>Daily plan per collector</b> — ready-to-send WhatsApp message</li>
+        <li><b>Best time to call</b> — answer-rate by day &amp; time slot</li>
+        <li><b>Roll-risk alerts</b> — money moving to a worse bucket this week</li>
+        <li><b>ML call-note classifier</b> — Arabic notes, retrainable from the UI</li>
+        <li><b>Distribution &amp; rotation</b> — balanced portfolios across collectors</li>
+        <li><b>Role-based access</b> — pages &amp; portfolios per user, audit log</li>
+        <li><b>Bank-file analytics</b> — salary-day calls, deferral &amp; reschedule offers</li>
+      </ul>
+      <div class="project-actions">
+        <a class="btn btn-primary demo-link" href="#" target="_blank" rel="noopener" hidden>Open live demo →</a>
+        <a class="btn btn-outline" href="collection-suite.html">Read the case study</a>
+      </div>
     </div>
 
     <div class="project-card">
@@ -488,6 +527,13 @@
       if(e.key === 'Escape'){ closeLightbox(); }
     });
   })();
+</script>
+<script>
+  // رابط الديمو (Streamlit Cloud) — لما يتحط، زرار «Open live demo» بيظهر
+  var DEMO_URL = "";
+  if (DEMO_URL) {
+    document.querySelectorAll('.demo-link').forEach(function(a){ a.href = DEMO_URL; a.hidden = false; });
+  }
 </script>
 </body>
 </html>
